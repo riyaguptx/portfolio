@@ -1,0 +1,1071 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Riya Gupta — Design Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+<style>
+  :root {
+    --navy: #0F2855;
+    --navy-mid: #1F3E7A;
+    --gold: #C8A96E;
+    --cream: #F7F4EE;
+    --warm: #EDE8DE;
+    --ink: #1A1A1A;
+    --muted: #6B6560;
+    --border: #D4CFC6;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--cream);
+    color: var(--ink);
+    font-size: 15px;
+    line-height: 1.65;
+    overflow-x: hidden;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    background: var(--navy);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at 70% 30%, rgba(200,169,110,0.12) 0%, transparent 60%),
+                radial-gradient(ellipse at 20% 80%, rgba(31,62,122,0.6) 0%, transparent 50%);
+    pointer-events: none;
+  }
+
+  .hero-text {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 80px 64px 80px 80px;
+    position: relative;
+    z-index: 2;
+  }
+
+  .hero-eyebrow {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 28px;
+    opacity: 0;
+    animation: fadeUp 0.8s ease 0.2s forwards;
+  }
+
+  .hero-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(56px, 7vw, 96px);
+    font-weight: 300;
+    line-height: 1;
+    color: #fff;
+    margin-bottom: 8px;
+    opacity: 0;
+    animation: fadeUp 0.9s ease 0.35s forwards;
+  }
+
+  .hero-name em {
+    font-style: italic;
+    color: var(--gold);
+  }
+
+  .hero-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(18px, 2.5vw, 28px);
+    font-weight: 300;
+    color: rgba(255,255,255,0.6);
+    margin-bottom: 40px;
+    letter-spacing: 0.02em;
+    opacity: 0;
+    animation: fadeUp 0.9s ease 0.5s forwards;
+  }
+
+  .hero-desc {
+    font-size: 14px;
+    color: rgba(255,255,255,0.55);
+    max-width: 380px;
+    line-height: 1.8;
+    margin-bottom: 48px;
+    opacity: 0;
+    animation: fadeUp 0.9s ease 0.65s forwards;
+  }
+
+  .hero-links {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+    opacity: 0;
+    animation: fadeUp 0.9s ease 0.8s forwards;
+  }
+
+  .btn-primary {
+    background: var(--gold);
+    color: var(--navy);
+    padding: 12px 28px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    text-decoration: none;
+    display: inline-block;
+    transition: all 0.25s;
+  }
+  .btn-primary:hover { background: #fff; transform: translateY(-2px); }
+
+  .btn-ghost {
+    border: 1px solid rgba(255,255,255,0.25);
+    color: rgba(255,255,255,0.75);
+    padding: 12px 28px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    text-decoration: none;
+    display: inline-block;
+    transition: all 0.25s;
+  }
+  .btn-ghost:hover { border-color: var(--gold); color: var(--gold); }
+
+  .hero-visual {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 80px 64px;
+    z-index: 2;
+  }
+
+  .hero-stats-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2px;
+    width: 100%;
+    max-width: 360px;
+    opacity: 0;
+    animation: fadeIn 1.2s ease 1s forwards;
+  }
+
+  .stat-card {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.08);
+    padding: 28px 24px;
+    position: relative;
+    overflow: hidden;
+    transition: background 0.3s;
+  }
+  .stat-card:hover { background: rgba(255,255,255,0.08); }
+  .stat-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 2px;
+    background: var(--gold);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.4s ease;
+  }
+  .stat-card:hover::before { transform: scaleX(1); }
+
+  .stat-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 40px;
+    font-weight: 300;
+    color: #fff;
+    line-height: 1;
+    margin-bottom: 6px;
+  }
+  .stat-label {
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.4);
+  }
+
+  .scroll-hint {
+    position: absolute;
+    bottom: 32px;
+    left: 80px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    color: rgba(255,255,255,0.3);
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    z-index: 2;
+    opacity: 0;
+    animation: fadeIn 1s ease 1.5s forwards;
+  }
+  .scroll-hint::before {
+    content: '';
+    width: 40px; height: 1px;
+    background: rgba(255,255,255,0.2);
+  }
+
+  /* ── SECTIONS ── */
+  section { padding: 100px 80px; }
+
+  .section-label {
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 16px;
+  }
+
+  .section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(36px, 4vw, 56px);
+    font-weight: 300;
+    line-height: 1.1;
+    color: var(--navy);
+    margin-bottom: 48px;
+  }
+
+  .section-title em { font-style: italic; color: var(--navy-mid); }
+
+  /* ── ABOUT ── */
+  .about {
+    background: var(--warm);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+  }
+
+  .about-body p {
+    color: var(--muted);
+    margin-bottom: 20px;
+    font-size: 15px;
+    line-height: 1.85;
+  }
+
+  .about-pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 32px;
+  }
+
+  .pill {
+    border: 1px solid var(--border);
+    color: var(--navy);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 7px 16px;
+    background: #fff;
+  }
+
+  .about-right {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  .about-stat-row {
+    display: flex;
+    align-items: baseline;
+    gap: 16px;
+    padding-bottom: 24px;
+    border-bottom: 1px solid var(--border);
+  }
+  .about-stat-row:last-child { border-bottom: none; }
+
+  .asr-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 48px;
+    font-weight: 300;
+    color: var(--navy);
+    line-height: 1;
+    flex-shrink: 0;
+    min-width: 100px;
+  }
+  .asr-text strong { display: block; font-size: 13px; font-weight: 500; color: var(--ink); margin-bottom: 2px; }
+  .asr-text span { font-size: 12px; color: var(--muted); }
+
+  /* ── WORK ── */
+  .work { background: var(--cream); }
+
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+  }
+
+  .project-card {
+    background: var(--warm);
+    padding: 40px 36px;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.3s ease;
+    cursor: default;
+  }
+  .project-card:hover { transform: translateY(-4px); }
+
+  .project-card::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0;
+    width: 100%; height: 3px;
+    background: var(--gold);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.4s ease;
+  }
+  .project-card:hover::after { transform: scaleX(1); }
+
+  .pc-tag {
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 20px;
+    display: block;
+  }
+
+  .pc-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 26px;
+    font-weight: 400;
+    color: var(--navy);
+    margin-bottom: 14px;
+    line-height: 1.2;
+  }
+
+  .pc-desc {
+    font-size: 13px;
+    color: var(--muted);
+    line-height: 1.7;
+    margin-bottom: 24px;
+  }
+
+  .pc-tools {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+
+  .tool-tag {
+    background: rgba(15,40,85,0.07);
+    color: var(--navy);
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 4px 10px;
+  }
+
+  /* FEATURED card */
+  .project-card.featured {
+    background: var(--navy);
+    grid-column: span 2;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    align-items: center;
+  }
+
+  .project-card.featured .pc-tag { color: var(--gold); }
+  .project-card.featured .pc-title { color: #fff; font-size: 36px; }
+  .project-card.featured .pc-desc { color: rgba(255,255,255,0.55); }
+  .project-card.featured .tool-tag {
+    background: rgba(255,255,255,0.1);
+    color: rgba(255,255,255,0.7);
+  }
+
+  .featured-metrics {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2px;
+  }
+
+  .fm-item {
+    background: rgba(255,255,255,0.05);
+    padding: 20px;
+    border: 1px solid rgba(255,255,255,0.06);
+  }
+
+  .fm-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 32px;
+    font-weight: 300;
+    color: var(--gold);
+    line-height: 1;
+    display: block;
+    margin-bottom: 4px;
+  }
+
+  .fm-label {
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.35);
+  }
+
+  /* ── SKILLS ── */
+  .skills { background: var(--navy); padding: 100px 80px; }
+  .skills .section-title { color: #fff; }
+  .skills .section-title em { color: var(--gold); }
+
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2px;
+  }
+
+  .skill-block {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.07);
+    padding: 36px 28px;
+    transition: background 0.3s;
+  }
+  .skill-block:hover { background: rgba(255,255,255,0.08); }
+
+  .sb-icon {
+    font-size: 28px;
+    margin-bottom: 16px;
+    display: block;
+  }
+
+  .sb-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px;
+    font-weight: 400;
+    color: #fff;
+    margin-bottom: 16px;
+  }
+
+  .sb-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .sb-list li {
+    font-size: 12px;
+    color: rgba(255,255,255,0.45);
+    letter-spacing: 0.05em;
+    padding-left: 14px;
+    position: relative;
+  }
+  .sb-list li::before {
+    content: '—';
+    position: absolute;
+    left: 0;
+    color: var(--gold);
+    font-size: 10px;
+  }
+
+  /* ── EXPERIENCE ── */
+  .experience { background: var(--cream); }
+
+  .exp-timeline {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    border-left: 1px solid var(--border);
+    margin-left: 20px;
+    padding-left: 48px;
+  }
+
+  .exp-item {
+    position: relative;
+    padding-bottom: 52px;
+  }
+  .exp-item:last-child { padding-bottom: 0; }
+
+  .exp-item::before {
+    content: '';
+    position: absolute;
+    left: -56px;
+    top: 6px;
+    width: 14px; height: 14px;
+    border-radius: 50%;
+    background: var(--cream);
+    border: 2px solid var(--navy);
+    transition: background 0.3s;
+  }
+  .exp-item:hover::before { background: var(--gold); border-color: var(--gold); }
+
+  .exp-date {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 8px;
+  }
+
+  .exp-role {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 26px;
+    font-weight: 400;
+    color: var(--navy);
+    margin-bottom: 4px;
+  }
+
+  .exp-org {
+    font-size: 13px;
+    color: var(--muted);
+    margin-bottom: 16px;
+    font-style: italic;
+  }
+
+  .exp-points {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .exp-points li {
+    font-size: 13px;
+    color: var(--muted);
+    padding-left: 20px;
+    position: relative;
+    line-height: 1.65;
+  }
+  .exp-points li::before {
+    content: '↗';
+    position: absolute;
+    left: 0;
+    color: var(--gold);
+    font-size: 11px;
+  }
+
+  /* ── CONTACT ── */
+  .contact {
+    background: var(--warm);
+    text-align: center;
+    padding: 100px 80px;
+  }
+
+  .contact .section-title { margin-bottom: 20px; }
+
+  .contact-sub {
+    font-size: 15px;
+    color: var(--muted);
+    max-width: 500px;
+    margin: 0 auto 48px;
+    line-height: 1.8;
+  }
+
+  .contact-info {
+    display: flex;
+    justify-content: center;
+    gap: 48px;
+    margin-bottom: 48px;
+    flex-wrap: wrap;
+  }
+
+  .ci-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .ci-label {
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+  }
+
+  .ci-val {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 20px;
+    color: var(--navy);
+    text-decoration: none;
+  }
+  .ci-val:hover { color: var(--gold); }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--navy);
+    padding: 24px 80px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .footer-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 20px;
+    font-weight: 300;
+    color: rgba(255,255,255,0.5);
+  }
+
+  .footer-copy {
+    font-size: 11px;
+    color: rgba(255,255,255,0.25);
+    letter-spacing: 0.1em;
+  }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(32px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    padding: 20px 80px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: background 0.3s, padding 0.3s;
+  }
+  nav.scrolled {
+    background: rgba(15,40,85,0.97);
+    padding: 14px 80px;
+    backdrop-filter: blur(12px);
+  }
+
+  .nav-logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px;
+    font-weight: 400;
+    color: #fff;
+    letter-spacing: 0.05em;
+    text-decoration: none;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 36px;
+    list-style: none;
+  }
+
+  .nav-links a {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.55);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--gold); }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    nav { padding: 20px 32px; }
+    nav.scrolled { padding: 14px 32px; }
+    .hero { grid-template-columns: 1fr; }
+    .hero-text { padding: 120px 32px 60px; }
+    .hero-visual { display: none; }
+    section { padding: 72px 32px; }
+    .about { grid-template-columns: 1fr; gap: 48px; }
+    .projects-grid { grid-template-columns: 1fr; }
+    .project-card.featured { grid-column: span 1; grid-template-columns: 1fr; }
+    .skills-grid { grid-template-columns: 1fr 1fr; }
+    .footer { padding: 24px 32px; }
+    .contact { padding: 72px 32px; }
+    .contact-info { gap: 24px; }
+    footer { padding: 24px 32px; }
+    .scroll-hint { left: 32px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="nav">
+  <a class="nav-logo" href="#">Riya Gupta</a>
+  <ul class="nav-links">
+    <li><a href="#work">Work</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="top">
+  <div class="hero-text">
+    <p class="hero-eyebrow">Graphic Design &amp; Visual Strategy</p>
+    <h1 class="hero-name">Riya<br/><em>Gupta</em></h1>
+    <p class="hero-title">Designer · Strategist · Creator</p>
+    <p class="hero-desc">MBA candidate at SDSU with hands-on experience in Canva, social media design, event marketing, and brand communications. I create visuals that connect — strategically and aesthetically.</p>
+    <div class="hero-links">
+      <a href="#work" class="btn-primary">View My Work</a>
+      <a href="#contact" class="btn-ghost">Get In Touch</a>
+    </div>
+  </div>
+  <div class="hero-visual">
+    <div class="hero-stats-grid">
+      <div class="stat-card">
+        <div class="stat-num">1.2M</div>
+        <div class="stat-label">Content Views</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">3+</div>
+        <div class="stat-label">Years Design Exp.</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">1K+</div>
+        <div class="stat-label">Event Attendees</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">40%</div>
+        <div class="stat-label">Engagement Lift</div>
+      </div>
+    </div>
+  </div>
+  <div class="scroll-hint">Scroll to explore</div>
+</section>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+  <div class="about-body reveal">
+    <p class="section-label">About</p>
+    <h2 class="section-title">Creativity<br/><em>meets strategy</em></h2>
+    <p>I'm a designer and MBA student at San Diego State University (graduating Dec 2026) who believes the best visuals don't just look good — they work. My background spans social media content creation, large-scale event marketing, and brand communications.</p>
+    <p>I use Canva daily and have hands-on experience creating graphics, event materials, social posts, and presentation decks that have reached audiences in the millions. I love turning strategy into visuals that resonate.</p>
+    <div class="about-pills">
+      <span class="pill">Canva</span>
+      <span class="pill">Adobe Suite</span>
+      <span class="pill">Social Graphics</span>
+      <span class="pill">Event Design</span>
+      <span class="pill">Brand Comms</span>
+      <span class="pill">Google Slides</span>
+      <span class="pill">PowerPoint</span>
+    </div>
+  </div>
+  <div class="about-right reveal">
+    <div class="about-stat-row">
+      <div class="asr-num">1.2M</div>
+      <div class="asr-text">
+        <strong>Organic Content Views</strong>
+        <span>Single reel leveraging trending audio &amp; bold visual styling on Instagram</span>
+      </div>
+    </div>
+    <div class="about-stat-row">
+      <div class="asr-num">7.9K</div>
+      <div class="asr-text">
+        <strong>Post Saves</strong>
+        <span>Fashion lifestyle content recognized for aesthetic consistency and visual appeal</span>
+      </div>
+    </div>
+    <div class="about-stat-row">
+      <div class="asr-num">2</div>
+      <div class="asr-text">
+        <strong>Large-Scale Events Designed For</strong>
+        <span>Garba Festival (1,000+ attendees) &amp; Sunburn Youth Concert — full promotional design</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WORK -->
+<section class="work" id="work">
+  <div class="reveal">
+    <p class="section-label">Selected Work</p>
+    <h2 class="section-title">Design &amp;<br/><em>Creative Projects</em></h2>
+  </div>
+  <div class="projects-grid reveal">
+
+    <!-- FEATURED -->
+    <div class="project-card featured">
+      <div>
+        <span class="pc-tag">Social Media · Content Design</span>
+        <h3 class="pc-title">Viral Content Campaign — Instagram</h3>
+        <p class="pc-desc">Designed and produced a series of lifestyle and fashion content pieces using Canva and photo editing tools. Leveraged trending audio, typography hierarchy, and color storytelling to achieve organic virality. Studied content analytics to iterate on visual style and maximize reach.</p>
+        <div class="pc-tools">
+          <span class="tool-tag">Canva</span>
+          <span class="tool-tag">Photo Editing</span>
+          <span class="tool-tag">Typography</span>
+          <span class="tool-tag">Content Strategy</span>
+        </div>
+      </div>
+      <div class="featured-metrics">
+        <div class="fm-item">
+          <span class="fm-num">1.2M</span>
+          <span class="fm-label">Views</span>
+        </div>
+        <div class="fm-item">
+          <span class="fm-num">68K</span>
+          <span class="fm-label">Likes</span>
+        </div>
+        <div class="fm-item">
+          <span class="fm-num">4.4K</span>
+          <span class="fm-label">Saves</span>
+        </div>
+        <div class="fm-item">
+          <span class="fm-num">200K</span>
+          <span class="fm-label">Monthly Views</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- card 2 -->
+    <div class="project-card">
+      <span class="pc-tag">Event Design · Print &amp; Digital</span>
+      <h3 class="pc-title">Garba Festival — Event Promotional Design</h3>
+      <p class="pc-desc">Created full promotional suite for a 1,000+ attendee cultural event — flyers, social posts, digital banners, and signage. Managed visual consistency across all touchpoints while coordinating with sponsors and vendors.</p>
+      <div class="pc-tools">
+        <span class="tool-tag">Canva</span>
+        <span class="tool-tag">Print Design</span>
+        <span class="tool-tag">Event Materials</span>
+        <span class="tool-tag">Brand Consistency</span>
+      </div>
+    </div>
+
+    <!-- card 3 -->
+    <div class="project-card">
+      <span class="pc-tag">Concert · Brand Design</span>
+      <h3 class="pc-title">Sunburn Youth Concert — Visual Identity</h3>
+      <p class="pc-desc">Developed marketing visuals and audience-facing materials for an international artist concert event. Crafted promotional assets that merged music culture with university branding to drive ticket sales and engagement.</p>
+      <div class="pc-tools">
+        <span class="tool-tag">Canva</span>
+        <span class="tool-tag">Social Graphics</span>
+        <span class="tool-tag">Poster Design</span>
+        <span class="tool-tag">Brand Strategy</span>
+      </div>
+    </div>
+
+    <!-- card 4 -->
+    <div class="project-card">
+      <span class="pc-tag">Corporate · Employer Branding</span>
+      <h3 class="pc-title">Alois Solutions — Recruitment Campaign</h3>
+      <p class="pc-desc">Designed employer branding and recruitment marketing content to reflect company culture. Built visually consistent social posts and presentation materials that boosted candidate engagement and made the brand more authentic.</p>
+      <div class="pc-tools">
+        <span class="tool-tag">Canva</span>
+        <span class="tool-tag">Presentation Design</span>
+        <span class="tool-tag">Brand Guidelines</span>
+        <span class="tool-tag">Copywriting</span>
+      </div>
+    </div>
+
+    <!-- card 5 -->
+    <div class="project-card">
+      <span class="pc-tag">Research · Data Visualization</span>
+      <h3 class="pc-title">BBA Thesis — Visual Research Report</h3>
+      <p class="pc-desc">Designed a full research report and presentation deck on Instagram's impact on brand loyalty (Nike, Adidas, New Balance). Created charts, infographics, and layout systems to communicate data findings clearly to academic audiences.</p>
+      <div class="pc-tools">
+        <span class="tool-tag">PowerPoint</span>
+        <span class="tool-tag">Data Visualization</span>
+        <span class="tool-tag">Infographics</span>
+        <span class="tool-tag">Report Layout</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section class="skills" id="skills">
+  <div class="reveal">
+    <p class="section-label">Capabilities</p>
+    <h2 class="section-title">Tools &amp;<br/><em>Expertise</em></h2>
+  </div>
+  <div class="skills-grid reveal">
+    <div class="skill-block">
+      <span class="sb-icon">✦</span>
+      <h3 class="sb-title">Design Tools</h3>
+      <ul class="sb-list">
+        <li>Canva (Advanced)</li>
+        <li>Adobe Photoshop</li>
+        <li>Adobe Illustrator</li>
+        <li>Adobe InDesign</li>
+        <li>Figma (learning)</li>
+      </ul>
+    </div>
+    <div class="skill-block">
+      <span class="sb-icon">◈</span>
+      <h3 class="sb-title">Content &amp; Social</h3>
+      <ul class="sb-list">
+        <li>Instagram content strategy</li>
+        <li>Reel &amp; post design</li>
+        <li>Trend-driven creative</li>
+        <li>Audience analytics</li>
+        <li>Brand visual storytelling</li>
+      </ul>
+    </div>
+    <div class="skill-block">
+      <span class="sb-icon">⬡</span>
+      <h3 class="sb-title">Print &amp; Digital</h3>
+      <ul class="sb-list">
+        <li>Flyers &amp; event posters</li>
+        <li>Email visuals</li>
+        <li>Social ad templates</li>
+        <li>Presentation decks</li>
+        <li>Signage &amp; banners</li>
+      </ul>
+    </div>
+    <div class="skill-block">
+      <span class="sb-icon">◎</span>
+      <h3 class="sb-title">Strategy &amp; Comms</h3>
+      <ul class="sb-list">
+        <li>Brand guidelines</li>
+        <li>Visual consistency</li>
+        <li>Stakeholder presentations</li>
+        <li>Campaign planning</li>
+        <li>Google Workspace</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section class="experience" id="experience">
+  <div class="reveal">
+    <p class="section-label">Experience</p>
+    <h2 class="section-title">Creative<br/><em>Background</em></h2>
+  </div>
+  <div class="exp-timeline reveal">
+
+    <div class="exp-item">
+      <div class="exp-date">Aug 2024 – Present</div>
+      <div class="exp-role">Graduate Projects Lead</div>
+      <div class="exp-org">San Diego State University, MBA Program</div>
+      <ul class="exp-points">
+        <li>Designed presentation materials and visual deliverables for multi-stakeholder academic projects</li>
+        <li>Created structured reports and decks communicating complex data to faculty and peers</li>
+        <li>Applied design thinking to project planning and communications across teams of 12+</li>
+      </ul>
+    </div>
+
+    <div class="exp-item">
+      <div class="exp-date">Dec 2021 – Dec 2023</div>
+      <div class="exp-role">Business Operations &amp; Analytics Lead</div>
+      <div class="exp-org">Times Café</div>
+      <ul class="exp-points">
+        <li>Designed and maintained executive dashboards, scorecards, and briefing materials using Canva and Excel</li>
+        <li>Produced weekly visual analytical outputs consumed by senior leadership</li>
+        <li>Built branded presentation templates that standardized communications across the organization</li>
+      </ul>
+    </div>
+
+    <div class="exp-item">
+      <div class="exp-date">Sep 2022 – Nov 2022</div>
+      <div class="exp-role">Business Analytics &amp; Technology Intern</div>
+      <div class="exp-org">Alois Solutions — Healthcare IT</div>
+      <ul class="exp-points">
+        <li>Designed employer branding and recruitment marketing content for social media and internal communications</li>
+        <li>Created visual assets that boosted candidate engagement and improved brand authenticity</li>
+      </ul>
+    </div>
+
+    <div class="exp-item">
+      <div class="exp-date">May 2021 – Jul 2021</div>
+      <div class="exp-role">Product &amp; Growth Marketing Intern</div>
+      <div class="exp-org">Unschool</div>
+      <ul class="exp-points">
+        <li>Designed trend-driven visual campaigns targeting youth audiences on Instagram and other platforms</li>
+        <li>Created interactive formats and visual content that drove a 40% improvement in program participation</li>
+      </ul>
+    </div>
+
+    <div class="exp-item">
+      <div class="exp-date">2019 – 2022</div>
+      <div class="exp-role">Event Marketing &amp; Design Lead</div>
+      <div class="exp-org">Navrachana University Student Council</div>
+      <ul class="exp-points">
+        <li>Designed full promotional suites for Garba Festival (1,000+ attendees) and Sunburn Youth Concert — posters, flyers, digital assets, signage</li>
+        <li>Managed visual brand consistency across all event touchpoints and sponsorship materials</li>
+        <li>Secured ₹40,000 in sponsorships aided by professional design deliverables and pitch decks</li>
+      </ul>
+    </div>
+
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <p class="section-label reveal">Let's Work Together</p>
+  <h2 class="section-title reveal">Available for<br/><em>Summer 2026</em></h2>
+  <p class="contact-sub reveal">Open to the SDSU Global Campus Design Intern role and excited to contribute to your Marketing &amp; Communications team. Let's connect.</p>
+  <div class="contact-info reveal">
+    <div class="ci-item">
+      <span class="ci-label">Email</span>
+      <a class="ci-val" href="mailto:guptariya471@gmail.com">guptariya471@gmail.com</a>
+    </div>
+    <div class="ci-item">
+      <span class="ci-label">Phone</span>
+      <a class="ci-val" href="tel:6196758598">(619) 675-8598</a>
+    </div>
+    <div class="ci-item">
+      <span class="ci-label">LinkedIn</span>
+      <a class="ci-val" href="https://linkedin.com/in/riyaguptx" target="_blank">linkedin.com/in/riyaguptx</a>
+    </div>
+    <div class="ci-item">
+      <span class="ci-label">Instagram</span>
+      <a class="ci-val" href="https://instagram.com/riyaguptx" target="_blank">@riyaguptx</a>
+    </div>
+  </div>
+  <div class="reveal">
+    <a href="mailto:guptariya471@gmail.com" class="btn-primary" style="background:var(--navy);color:#fff;">Send Me a Message</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <span class="footer-name">Riya Gupta</span>
+  <span class="footer-copy">MBA Candidate · SDSU · Design Portfolio 2026</span>
+</footer>
+
+<script>
+  // Nav scroll
+  const nav = document.getElementById('nav');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 60);
+  });
+
+  // Reveal on scroll
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => entry.target.classList.add('visible'), i * 80);
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1 });
+  reveals.forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
